@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Outlet | Premium Experience</title>
+    <!-- Google Fonts: Poppins for Modern Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a5a;
+            --accent: #f39c12;
+            --light-gold: #fdebd0;
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.98);
+            --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            scroll-behavior: smooth; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body { background: #f1f5f9; color: #334155; overflow-x: hidden; }
+
+        /* --- Header --- */
+        header { 
+            position: sticky; top: 0; z-index: 1000;
+            background: var(--glass); backdrop-filter: blur(12px);
+            padding: 12px 5%; display: flex; justify-content: space-between; 
+            align-items: center; border-bottom: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .logo { font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; flex-shrink: 0; }
+        .logo span { color: var(--accent); }
+        
+        .search-bar { 
+            flex: 1; 
+            max-width: 400px;
+            margin: 0 15px; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+        }
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .search-bar input { 
+            width: 100%; 
+            padding: 10px 18px 10px 40px; 
+            border-radius: 50px; 
+            border: 1.5px solid #e2e8f0; 
+            outline: none; 
+            font-size: 13px;
+            background: #fff;
+            transition: 0.3s;
+        }
+        .search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.1); }
+
+        /* --- Navigation --- */
+        nav { 
+            background: var(--primary); 
+            padding: 12px 5%; 
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            overflow-x: auto; 
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        nav::-webkit-scrollbar { display: none; }
+        
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            transition: 0.3s; 
+            opacity: 0.9;
+        }
+        nav a:hover { color: var(--accent); opacity: 1; }
+
+        /* --- Hero Section --- */
+        .hero-container { padding: 30px 5%; display: flex; gap: 25px; flex-wrap: wrap; }
+        .hero-banner { flex: 1.5; min-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); }
+        .hero-banner img { width: 100%; height: 100%; object-fit: cover; }
+
+        .exclusive-card { 
+            flex: 1; min-width: 300px; background: var(--primary); border-radius: 20px; 
+            padding: 30px; color: white; box-shadow: 15px 15px 0px var(--light-gold);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .exclusive-card h2 { font-size: 20px; margin-bottom: 15px; border-left: 5px solid var(--accent); padding-left: 15px; font-weight: 600; }
+        
+        .gear-item { display: flex; align-items: center; background: rgba(255,255,255,0.08); padding: 10px; border-radius: 15px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .gear-item img { width: 40px; height: 40px; border-radius: 10px; margin-right: 12px; background: #fff; object-fit: cover; }
+        .gear-info p { font-weight: 500; font-size: 13px; }
+
+        /* --- Founder Quote --- */
+        .founder-strip { display: flex; padding: 50px 5%; align-items: center; gap: 40px; background: #fff; margin: 30px 0; border-radius: 20px; box-shadow: var(--shadow-soft); width: 90%; margin-left: auto; margin-right: auto; }
+        .founder-info { flex: 1; border-right: 4px solid var(--accent); padding-right: 25px; min-width: 200px; }
+        .founder-info h3 { font-size: 18px; color: var(--dark); margin-bottom: 5px; }
+        .founder-info p { font-size: 12px; color: #64748b; font-weight: 600; letter-spacing: 1px; }
+        .founder-quote { flex: 2; min-width: 280px; }
+        .founder-quote blockquote { font-size: 20px; color: #1e293b; font-style: italic; line-height: 1.6; margin-bottom: 10px; }
+
+        /* --- Shop Grid --- */
+        .shop-section { padding: 40px 5%; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 28px; color: var(--primary); font-weight: 800; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 10px auto; border-radius: 2px; }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px; 
+        }
+
+        .product-card { 
+            background: #fff; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            border: 1px solid transparent; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+
+        .product-card img { 
+            width: 100%; 
+            aspect-ratio: 1/1; 
+            object-fit: cover; 
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover img { transform: scale(1.08); }
+
+        .product-details { padding: 18px; text-align: center; }
+        .product-details h4 { font-size: 14px; margin-bottom: 10px; color: #1e293b; height: 40px; overflow: hidden; line-height: 1.4; font-weight: 600; }
+        .price { color: var(--accent); font-weight: 700; font-size: 18px; display: block; margin-bottom: 15px; }
+        
+        .buy-now { 
+            width: 100%; padding: 10px; background: var(--primary); color: white; 
+            border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .buy-now:hover { background: var(--accent); transform: scale(1.02); }
+
+        .product-card.selected {
+            border-color: var(--accent);
+            background: #fffcf5;
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: #fff; width: 90%; max-width: 450px; padding: 25px;
+            border-radius: 20px; text-align: center; position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            animation: modalSlide 0.3s ease;
+        }
+        @keyframes modalSlide { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 20px; cursor: pointer; color: #94a3b8; }
+        .modal-img { width: 120px; height: 120px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; border: 3px solid #f8fafc; }
+        .modal-title { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+        .modal-price { font-size: 22px; font-weight: 800; color: var(--accent); margin-bottom: 15px; }
+        .modal-instruction { font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+        .confirm-btn { 
+            width: 100%; padding: 14px; background: #0084ff; color: white; border: none; 
+            border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; 
+            align-items: center; justify-content: center; gap: 10px; font-size: 15px;
+        }
+
+        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) {
+            header { padding: 10px 3%; }
+            .logo { font-size: 18px; }
+            nav { gap: 10px; padding: 10px 3%; }
+            nav a { font-size: 13px; margin: 0; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .founder-strip { flex-direction: column; text-align: center; padding: 30px; }
+            .founder-info { border-right: none; border-bottom: 3px solid var(--accent); padding-right: 0; padding-bottom: 15px; }
+        }
+
+        footer { background: var(--dark); color: white; padding: 50px 20px; text-align: center; margin-top: 60px; }
+        footer p { opacity: 0.7; font-size: 14px; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">NextGen<span> Outlet</span></a>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="pSearch" placeholder="Search products...">
+        </div>
+        <div style="position: relative;">
+            <i class="fas fa-shopping-cart" style="color: var(--primary); font-size: 22px;"></i>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#shop">Collections</a>
+        <a href="#shop">Gadgets</a>
+        <a href="https://m.me/faiyaz.been.habib">Contact</a>
+    </nav>
+
+    <section class="hero-container">
+        <div class="hero-banner">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200" alt="Tech">
+        </div>
+        <div class="exclusive-card">
+            <h2>Exclusive Gear</h2>
+            <div class="gear-item">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=100">
+                <div class="gear-info"><p>Premium Watches</p></div>
+            </div>
+            <div class="gear-item">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=100">
+                <div class="gear-info"><p>Audio Studio</p></div>
+            </div>
+            <button style="width:100%; background:var(--accent); border:none; padding:12px; border-radius:10px; color:white; font-weight:bold; cursor:pointer; margin-top: 10px;" onclick="document.getElementById('shop').scrollIntoView()">Explore Shop</button>
+        </div>
+    </section>
+
+    <section class="founder-strip">
+        <div class="founder-info">
+            <h3>FAIYAZ BEEN HABIB</h3>
+            <p>MANAGING DIRECTOR & CEO</p>
+        </div>
+        <div class="founder-quote">
+            <blockquote><p>وَأَوْفُوا الْكَيْلَ إِذَا كِلْتُمْ وَزِنُوا بِالْقِسْطَاسِ الْمُسْتَقِيمِ ۚ ذَٰلِكَ خَيْرٌ وَأَحْسَنُ تَأْوِيلًا</p></blockquote>
+            <p style="font-size: 15px; color: #475569;"><u>অনুবাদ</u>: "আর যখন তোমরা পরিমাপ করবে তখন পূর্ণভাবে পরিমাপ করো এবং সঠিক দাঁড়িপাল্লায় ওজন করো। এটিই উত্তম এবং পরিণামে অত্যন্ত শুভ।"</p>
+            <span style="font-size: 12px; color: var(--accent); font-weight: bold; display: block; margin-top: 10px;">- সূরা আল-ইসরা, আয়াত-৩৫</span>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-section">
+        <h3 class="section-title">NEW ARRIVALS</h3>
+        <div class="grid" id="productGrid">
+            
+            <div class="product-card" onclick="openOrderModal('One-Key Super Cool Handheld Fan', '750', 'https://i.ibb.co.com/wrLtYvPt/lh1g-Jdobr-ODTlj-GQrw-Rxa-SCYNbw-Fp-Ba5ts8-Qen-Pi.png', this)">
+                <img src="https://i.ibb.co.com/wrLtYvPt/lh1g-Jdobr-ODTlj-GQrw-Rxa-SCYNbw-Fp-Ba5ts8-Qen-Pi.png">
+                <div class="product-details"><h4>One-Key Super Cool Handheld Fan</h4><span class="price">BDT 750</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Jisulife Portable Neck Fan', '699', 'https://i.ibb.co.com/cXVPRLZ4/Screenshot-2026-04-30-195229.png', this)">
+                <img src="https://i.ibb.co.com/cXVPRLZ4/Screenshot-2026-04-30-195229.png">
+                <div class="product-details"><h4>Jisulife Portable Neck Fan</h4><span class="price">BDT 699</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Rolex Day-Date Black Replica Watch', '1400', 'https://i.ibb.co.com/1f4DxLTn/rolexblack.jpg', this)">
+                <img src="https://i.ibb.co.com/1f4DxLTn/rolexblack.jpg">
+                <div class="product-details"><h4>Rolex Day-Date Black Replica Watch</h4><span class="price">BDT 1400</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Rolex Blue Gold Replica Watch', '1250', 'https://i.ibb.co.com/PGHNXcbh/rolexgoldblue.jpg', this)">
+                <img src="https://i.ibb.co.com/PGHNXcbh/rolexgoldblue.jpg">
+                <div class="product-details"><h4>Rolex Blue Gold Replica Watch</h4><span class="price">BDT 1250</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Rolex Sunburst Green Replica Watch', '1250', 'https://i.ibb.co.com/FknWJByP/rolexgoldgreen.jpg', this)">
+                <img src="https://i.ibb.co.com/FknWJByP/rolexgoldgreen.jpg">
+                <div class="product-details"><h4>Rolex Sunburst Green Replica Watch</h4><span class="price">BDT 1250</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('T800 Ultra Smartwatch', '799', 'https://i.ibb.co.com/C3PC6Hrs/t800orange.jpg', this)">
+                <img src="https://i.ibb.co.com/C3PC6Hrs/t800orange.jpg">
+                <div class="product-details"><h4>T800 Ultra Smartwatch</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Poedagar Luxury Steel Watch', '799', 'https://i.ibb.co.com/sdK67jLZ/Screenshot-2026-05-02-225055.png', this)">
+                <img src="https://i.ibb.co.com/sdK67jLZ/Screenshot-2026-05-02-225055.png">
+                <div class="product-details"><h4>Poedagar Luxury Steel Watch</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Poedagar Leather Watch', '699', 'https://i.ibb.co.com/JwGh3NMG/poedagarlether.jpg', this)">
+                <img src="https://i.ibb.co.com/JwGh3NMG/poedagarlether.jpg">
+                <div class="product-details"><h4>Poedagar Leather Watch</h4><span class="price">BDT 699</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Premium Bluetooth Headphone', '300', 'https://i.ibb.co.com/1wXn7Vk/bluetoothheadphone.jpg', this)">
+                <img src="https://i.ibb.co.com/1wXn7Vk/bluetoothheadphone.jpg">
+                <div class="product-details"><h4>Premium Bluetooth Headphone</h4><span class="price">BDT 300</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('TITAN Boys Watch', '850', 'https://i.ibb.co.com/W4vwgLpy/5hl-Ytk-Nqm9z-ISTao-F3b-I9m7-V5-ZIMh-LXh0z-Sx-Kgg-A.jpg', this)">
+                <img src="https://i.ibb.co.com/W4vwgLpy/5hl-Ytk-Nqm9z-ISTao-F3b-I9m7-V5-ZIMh-LXh0z-Sx-Kgg-A.jpg">
+                <div class="product-details"><h4>TITAN Boys Watch</h4><span class="price">BDT 850</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Renos Girls Watch', '499', 'https://i.ibb.co.com/nqKcXBdn/a-Moka-IG2645q2-BUUbx-Yd2ddk-Kwui-MQSTWEDRKLao.jpg', this)">
+                <img src="https://i.ibb.co.com/nqKcXBdn/a-Moka-IG2645q2-BUUbx-Yd2ddk-Kwui-MQSTWEDRKLao.jpg">
+                <div class="product-details"><h4>Renos Girls Watch</h4><span class="price">BDT 499</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Astronaut Desk Lamp Alarm Clock', '699', 'https://i.ibb.co.com/dwgK8JTK/az-Cf-MVJGRm9-Unw-Pw23-CNAM8-Uz-Yy-M33jr-S9ds9lb6.jpg', this)">
+                <img src="https://i.ibb.co.com/dwgK8JTK/az-Cf-MVJGRm9-Unw-Pw23-CNAM8-Uz-Yy-M33jr-S9ds9lb6.jpg">
+                <div class="product-details"><h4>Astronaut Desk Lamp Alarm Clock</h4><span class="price">BDT 699</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('TITAN Boys Gold Watch', '850', 'https://i.ibb.co.com/GvcqvRfm/Bqphd4-K8-MFIz-KJMs-S5-Mp-QUfz-Zp-H6j-I10-OGPtqt-KY-1.jpg', this)">
+                <img src="https://i.ibb.co.com/GvcqvRfm/Bqphd4-K8-MFIz-KJMs-S5-Mp-QUfz-Zp-H6j-I10-OGPtqt-KY-1.jpg">
+                <div class="product-details"><h4>TITAN Boys Gold Watch</h4><span class="price">BDT 850</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Olevs Casual Couple Watch', '1480', 'https://i.ibb.co.com/Zz6mDhFc/d5jky-Tzb7s-Hc2pv-Esjk-Jj-Xzuar-Cm-QNBAUWVVZQ1-H.jpg', this)">
+                <img src="https://i.ibb.co.com/Zz6mDhFc/d5jky-Tzb7s-Hc2pv-Esjk-Jj-Xzuar-Cm-QNBAUWVVZQ1-H.jpg">
+                <div class="product-details"><h4>Olevs Casual Couple Watch</h4><span class="price">BDT 1480</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('USB Rechargeable Snail Desk Lamp', '599', 'https://i.ibb.co.com/N60NWS9B/Fjllm7m-AAe-OQ3-KWlvzgrk5n1j7-QZ0-HZMHQ8db9u-P.jpg', this)">
+                <img src="https://i.ibb.co.com/N60NWS9B/Fjllm7m-AAe-OQ3-KWlvzgrk5n1j7-QZ0-HZMHQ8db9u-P.jpg">
+                <div class="product-details"><h4>USB Rechargeable Snail Desk Lamp</h4><span class="price">BDT 599</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Success Way Boy’s Watch', '1050', 'https://i.ibb.co.com/mrJKSmgx/f-LAg-G3a-Nnvaq0-Ryokkkjonh-DFC1n-BJaf7-Bb-Wd-ZO7.jpg', this)">
+                <img src="https://i.ibb.co.com/mrJKSmgx/f-LAg-G3a-Nnvaq0-Ryokkkjonh-DFC1n-BJaf7-Bb-Wd-ZO7.jpg">
+                <div class="product-details"><h4>Success Way Boy’s Watch</h4><span class="price">BDT 1050</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Rolex Girls Replica Watch', '1150', 'https://i.ibb.co.com/RkM5RP8d/iz3od-PT2f-VUwh-Vdc-J5o-AZHNxc-JJWy6ju-G3wq4t-XH.jpg', this)">
+                <img src="https://i.ibb.co.com/RkM5RP8d/iz3od-PT2f-VUwh-Vdc-J5o-AZHNxc-JJWy6ju-G3wq4t-XH.jpg">
+                <div class="product-details"><h4>Rolex Girls Replica Watch</h4><span class="price">BDT 1150</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Super Bass Speaker & Phone Stand', '1450', 'https://i.ibb.co.com/hxZQJ9zq/Kl-UGL9-B0-Y5-XRC2ro-Ct-Wtt1jn-WQnc4-TSZMFCNFj-Qx.jpg', this)">
+                <img src="https://i.ibb.co.com/hxZQJ9zq/Kl-UGL9-B0-Y5-XRC2ro-Ct-Wtt1jn-WQnc4-TSZMFCNFj-Qx.jpg">
+                <div class="product-details"><h4>Super Bass Speaker & Phone Stand</h4><span class="price">BDT 1450</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Renos Stylish Girls Watch', '499', 'https://i.ibb.co.com/pBw1DQVs/n-IMr-Rieo-MEmdyw-An-IGBr-Ww-Qp-Xul-Aq-HTl6z0e-Un5x.jpg', this)">
+                <img src="https://i.ibb.co.com/pBw1DQVs/n-IMr-Rieo-MEmdyw-An-IGBr-Ww-Qp-Xul-Aq-HTl6z0e-Un5x.jpg">
+                <div class="product-details"><h4>Renos Stylish Girls Watch</h4><span class="price">BDT 499</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('M11 Handheld Mini Bladeless Fan', '740', 'https://i.ibb.co.com/0yRqzvN5/nyf-Zu-Rw-H9vp-W86q5-Gxeewhnrr-WNuja77a-DMb6-URs.jpg', this)">
+                <img src="https://i.ibb.co.com/0yRqzvN5/nyf-Zu-Rw-H9vp-W86q5-Gxeewhnrr-WNuja77a-DMb6-URs.jpg">
+                <div class="product-details"><h4>M11 Handheld Mini Bladeless Fan</h4><span class="price">BDT 740</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Casual Black Steel Watch', '1150', 'https://i.ibb.co.com/7xr5ThbQ/Opya7-LAyod1z-Ki-Sq-YO16b-OVWKep7t1-SMWf-WPanhn.jpg', this)">
+                <img src="https://i.ibb.co.com/7xr5ThbQ/Opya7-LAyod1z-Ki-Sq-YO16b-OVWKep7t1-SMWf-WPanhn.jpg">
+                <div class="product-details"><h4>Casual Black Steel Watch</h4><span class="price">BDT 1150</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Casio Boys Watch', '999', 'https://i.ibb.co.com/cSgF2hst/Ot5-K5938-FULx-IESo2oqrdb-QGL8q-Qur-XCZPq-Kp9l-Y.jpg', this)">
+                <img src="https://i.ibb.co.com/cSgF2hst/Ot5-K5938-FULx-IESo2oqrdb-QGL8q-Qur-XCZPq-Kp9l-Y.jpg">
+                <div class="product-details"><h4>Casio Boys Watch</h4><span class="price">BDT 999</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('OLEVS Emerald Square Watch', '799', 'https://i.ibb.co.com/prNWbKCH/pi6-N7-EH49gw2cu-Fe-Xv-A1sk-Lu-C36hzj-Ltk3va-Zt96.jpg', this)">
+                <img src="https://i.ibb.co.com/prNWbKCH/pi6-N7-EH49gw2cu-Fe-Xv-A1sk-Lu-C36hzj-Ltk3va-Zt96.jpg">
+                <div class="product-details"><h4>OLEVS Emerald Square Watch</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('CASIO QUARTZ VINTAGE WATCH', '950', 'https://i.ibb.co.com/fVSJcbYN/ppz8fr-QDu13-SK0-Dus-B3-Pgx-SD7p-Ce-Lp-L3nsem-Pg-K2.png', this)">
+                <img src="https://i.ibb.co.com/fVSJcbYN/ppz8fr-QDu13-SK0-Dus-B3-Pgx-SD7p-Ce-Lp-L3nsem-Pg-K2.png">
+                <div class="product-details"><h4>CASIO QUARTZ VINTAGE WATCH</h4><span class="price">BDT 950</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Gucci Girls Watch', '799', 'https://i.ibb.co.com/nNwyLTLS/RA8kl98-Gylw5u-GQWQ8p-G2-Ko-OJ0k-X6dw9p-Peac-Pf-B.jpg', this)">
+                <img src="https://i.ibb.co.com/nNwyLTLS/RA8kl98-Gylw5u-GQWQ8p-G2-Ko-OJ0k-X6dw9p-Peac-Pf-B.jpg">
+                <div class="product-details"><h4>Gucci Girls Watch</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Titan Luxury Water Resistant', '699', 'https://i.ibb.co.com/bMF66jL0/Sq-EI0xri-JYYKJ9-HBzeyzwve-Jqqm-RFj-Jzvn6ht-Xw-W.jpg', this)">
+                <img src="https://i.ibb.co.com/bMF66jL0/Sq-EI0xri-JYYKJ9-HBzeyzwve-Jqqm-RFj-Jzvn6ht-Xw-W.jpg">
+                <div class="product-details"><h4>Titan Luxury Water Resistant</h4><span class="price">BDT 699</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('CURREN 2025 Charming Women\'s', '650', 'https://i.ibb.co.com/KjVWxQ7b/s-R4x-VXh-Ku-YJQCd0-MNHz-LK1-SWH67m-IRqnhj9-HPVy-V.jpg', this)">
+                <img src="https://i.ibb.co.com/KjVWxQ7b/s-R4x-VXh-Ku-YJQCd0-MNHz-LK1-SWH67m-IRqnhj9-HPVy-V.jpg">
+                <div class="product-details"><h4>CURREN 2025 Charming Women's</h4><span class="price">BDT 650</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Success Way Luxury Boy’s Watch', '1050', 'https://i.ibb.co.com/B5CTMT0P/tell-N4-PAq-CPJEyw-W2igz-DCg-Wg6cafvsa-Hzd8o-N1-E.jpg', this)">
+                <img src="https://i.ibb.co.com/B5CTMT0P/tell-N4-PAq-CPJEyw-W2igz-DCg-Wg6cafvsa-Hzd8o-N1-E.jpg">
+                <div class="product-details"><h4>Success Way Luxury Boy’s Watch</h4><span class="price">BDT 1050</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('POEDAGAR 930 New Luxury Men\'s', '799', 'https://i.ibb.co.com/35pt3H9Q/ub-Vo258-E7-Yqsoq-Uy-L6i-PQH14-Oe5g-IWQr-SLjf-RMo-N-1.jpg', this)">
+                <img src="https://i.ibb.co.com/35pt3H9Q/ub-Vo258-E7-Yqsoq-Uy-L6i-PQH14-Oe5g-IWQr-SLjf-RMo-N-1.jpg">
+                <div class="product-details"><h4>POEDAGAR 930 New Luxury Men's</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Fastrack Boys Watch - Magnet Belt', '799', 'https://i.ibb.co.com/dsfsKbfw/umwr5b-UI8-Coft-Iffj-H1-KMd-Bc1o-Zv-YAb-CEW7-Njy-Pk.jpg', this)">
+                <img src="https://i.ibb.co.com/dsfsKbfw/umwr5b-UI8-Coft-Iffj-H1-KMd-Bc1o-Zv-YAb-CEW7-Njy-Pk.jpg">
+                <div class="product-details"><h4>Fastrack Boys Watch - Magnet Belt</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('Portable Wireless Music Player', '820', 'https://i.ibb.co.com/hFXQFg6D/Screenshot-2026-05-02-181222.png', this)">
+                <img src="https://i.ibb.co.com/hFXQFg6D/Screenshot-2026-05-02-181222.png">
+                <div class="product-details"><h4>Portable Wireless Music Player</h4><span class="price">BDT 820</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+            <div class="product-card" onclick="openOrderModal('G-Shape RGB BT Speaker', '799', 'https://i.ibb.co.com/QvCKNZVf/Screenshot-2026-04-30-195258.png', this)">
+                <img src="https://i.ibb.co.com/QvCKNZVf/Screenshot-2026-04-30-195258.png">
+                <div class="product-details"><h4>G-Shape RGB BT Speaker</h4><span class="price">BDT 799</span><button class="buy-now">Buy Now</button></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal Interface as per Image -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <img src="" id="modalImg" class="modal-img">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalPrice" class="modal-price"></p>
+            <p class="modal-instruction">অর্ডার কনফার্ম করতে নিচের বাটনে ক্লিক করে মেসেঞ্জারে আমাদের জানান।</p>
+            <button class="confirm-btn" id="confirmOrderBtn"><i class="fab fa-facebook-messenger"></i> Confirm Order via Messenger</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>NextGen Outlet &copy; 2026 | Developed by Faiyaz Been Habib</p>
+    </footer>
+
+    <script>
+        let currentProduct = "";
+        let currentPrice = "";
+
+        function openOrderModal(name, price, img, element) {
+            // Select Card Styling
+            document.querySelectorAll('.product-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Set Data
+            currentProduct = name;
+            currentPrice = price;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalPrice').innerText = "BDT " + price;
+            
+            // Show Modal
+            document.getElementById('orderModal').style.display = 'flex';
+
+            // Set Messenger Link
+            document.getElementById('confirmOrderBtn').onclick = function() {
+                const msg = `আসসালামু আলাইকুম, আমি "${name}" প্রোডাক্টটি কিনতে চাই। দাম: BDT ${price}`;
+                window.open(`https://m.me/faiyaz.been.habib?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('orderModal')) {
+                closeOrderModal();
+            }
+        };
+
+        // Search Functionality
+        document.getElementById('pSearch').addEventListener('keyup', function(e) {
+            let term = e.target.value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(card => {
+                let title = card.querySelector('h4').innerText.toLowerCase();
+                card.style.display = title.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
